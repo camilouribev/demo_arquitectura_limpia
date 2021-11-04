@@ -5,9 +5,10 @@ import co.com.store.product.domain.command.DeleteProduct;
 import co.com.store.shared.domain.generic.DomainEvent;
 import co.com.store.shared.domain.generic.EventStoreRepository;
 
+import javax.enterprise.context.Dependent;
 import java.util.List;
 import java.util.function.Function;
-
+@Dependent
 public class DeleteProductUseCase implements Function<DeleteProduct, List<DomainEvent>> {
     private final EventStoreRepository eventStoreRepository;
 
@@ -17,7 +18,7 @@ public class DeleteProductUseCase implements Function<DeleteProduct, List<Domain
 
     @Override
     public List<DomainEvent> apply(DeleteProduct deleteProduct) {
-        var product = Product.from(deleteProduct.getProductId(), eventStoreRepository.getEventsBy("product", deleteProduct.getProductId()));
+        var product = Product.from(deleteProduct.getId(), eventStoreRepository.getEventsBy("product", deleteProduct.getId()));
         product.productDelete();
         return product.getUncommittedChanges();
     }

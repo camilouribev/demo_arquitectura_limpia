@@ -17,10 +17,10 @@ public class Product extends AggregateRoot implements EventChange {
         super(id);
         appendChange(new ProductAdded(name, price)).apply();
     }
-    public void productUpdate(String name, double price){
+    public void productUpdate(String id,String name, double price){
         Objects.requireNonNull(name);
         Objects.requireNonNull(price);
-        appendChange(new ProductUpdated(name, price)).apply();
+        appendChange(new ProductUpdated(id , name, price)).apply();
     }
     public void productDelete(){
         appendChange(new ProductDeleted()).apply();

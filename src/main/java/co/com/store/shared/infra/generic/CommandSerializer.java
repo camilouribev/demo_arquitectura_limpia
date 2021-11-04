@@ -1,6 +1,6 @@
 package co.com.store.shared.infra.generic;
 
-import co.com.sofka.wsscore.domain.generic.Command;
+import co.com.store.shared.domain.generic.Command;
 
 import java.lang.reflect.Type;
 
