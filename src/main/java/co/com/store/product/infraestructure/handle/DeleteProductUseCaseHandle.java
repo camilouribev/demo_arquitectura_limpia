@@ -14,7 +14,7 @@ public class DeleteProductUseCaseHandle extends UseCaseHandle {
     public DeleteProductUseCaseHandle(DeleteProductUseCase deleteProductUseCase) {
         this.deleteProductUseCase = deleteProductUseCase;
     }
-    @ConsumeEvent("sofkau.store.productdeleted")
+    @ConsumeEvent("sofkau.store.productdelete")
     void consumeNoBlocking(DeleteProduct deleteProduct){
         var events = deleteProductUseCase.apply(deleteProduct);
         saveProduct(deleteProduct.getId(), events);
